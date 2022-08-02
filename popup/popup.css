@@ -1,0 +1,49 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background-color: rgb(80, 80, 80);
+  overflow: hidden;
+}
+
+.container {
+  width: fit-content;
+  width: max-content;
+  background-color: aliceblue;
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
+}
+
+.button-input button {
+  padding: 0.1rem 0.2rem 0.3rem 0.2rem;
+}
+
+.controler {
+}
+
+header p {
+  font-size: large;
+  font-weight: bold;
+  padding: 0 0.5rem 0.5rem 0.5rem;
+}
+
+.button-input {
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.button-input input {
+  /* input[type="range"] { */
+  width: 5rem;
+}
+
+.skip-to-end-btn {
+  padding: 0.1rem 0.2rem 0.2rem 0.2rem;
+}

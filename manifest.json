@@ -1,31 +1,21 @@
 {
+  "manifest_version": 2,
+  "name": "video-controler",
+  "version": "1.0",
+  "homepage_url": "https://github.com/shawn-sawa/video-controller-extension",
 
-    "manifest_version": 2,
-    "name": "video-controler",
-    "version": "1.0",
-  
-    "description": "extension that provides a way to control the speed of videos",
-  
-    "icons": {
-      "32": "icons/icon-32.png",
-      "48": "icons/icon-48.png",
-      "128": "icons/icon-128.png"
-    },
-    "permissions": [
-        "activeTab"
-      ],
+  "description": "extension that provides a way to control the speed of videos",
 
-      "browser_action": {
-        "default_icon": "icons/beasts-32.png",
-        "default_title": "Video Speed Controler",
-        "default_popup": "popup.html"
-      },
-    "content_scripts": [
-      {
-        "matches": ["<all_urls>"],
-        "js": ["borderify.js"]
-      }
-    ]
-  
+  "icons": {
+    "32": "./icons/icon-32.png",
+    "48": "./icons/icon-48.png",
+    "128": "./icons/icon-128.png"
+  },
+  "permissions": ["activeTab"],
+
+  "browser_action": {
+    "default_icon": "./icons/icon-32.png",
+    "default_title": "Video Speed Controler",
+    "default_popup": "./popup/popup.html"
   }
-  
+}
