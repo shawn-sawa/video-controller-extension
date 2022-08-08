@@ -2,7 +2,15 @@ console.log("hello from popup.js");
 const videoLength = document.getElementById("videoLength") as HTMLSpanElement;
 const currentSpeed = document.getElementById("currentSpeed") as HTMLSpanElement;
 
-class VideoController {
+function loadContentScript() {
+  browser.tabs.executeScript({
+    file: "/content_scripts/export.js",
+  });
+}
+
+browser.browserAction.onClicked.addListener(loadContentScript);
+
+class VideoController_UI {
   video: HTMLVideoElement;
   duration: number = 0;
   currentTime: number = 0;
@@ -18,19 +26,8 @@ class VideoController {
     // a.currentTime
     // a.fastSeek
   }
-  speedUp() {
-    this.speed += 0.1;
-    this.video.playbackRate = this.speed;
-    currentSpeed.innerText = this.speed.toString();
-  }
 
-  speedDown() {
-    this.speed -= 0.1;
-    this.video.playbackRate = this.speed;
-    currentSpeed.innerText = this.speed.toString();
-  }
-
-  skipToEnd() {
-    this.video.currentTime = this.duration;
+  sendMessage(message: string) {
+    chrome.runtime.sendMessage(message);
   }
 }

@@ -1,0 +1,26 @@
+{
+  "name": "video-controller-extension",
+  "version": "1.0.0",
+  "description": "A browser extension that provides a way to control the speed of videos.\r Intended to be used on sites where the ability to change the speed of the video is removed from the player.",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/chrome": "0.0.193",
+    "@types/firefox-webext-browser": "^94.0.1",
+    "typescript": "^4.7.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shawn-sawa/video-controller-extension.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shawn-sawa/video-controller-extension/issues"
+  },
+  "homepage": "https://github.com/shawn-sawa/video-controller-extension#readme"
+}
