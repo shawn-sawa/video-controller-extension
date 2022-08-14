@@ -12,20 +12,21 @@
       <header>
         <p>Video Speed Controller</p>
       </header>
-      <div class="controler">
+      <div id="pages">List of pages:</div>
+      <div id="controler">
         <div>
           Video length: <span id="videoLength">0</span>
           <br />
           Current speed: <span id="currentSpeed">1</span>
         </div>
         <div class="button-input">
-          <button>⏪</button>
+          <button id="speedDownBtn">⏪</button>
           <input type="range" min="0.5" max="3" step=".25" />
-          <button>⏩</button>
+          <button id="speedUpBtn">⏩</button>
         </div>
 
         <div>
-          <button class="skip-to-end-btn">Skip to end</button>
+          <button id="skipToEndBtn">Skip to end</button>
         </div>
       </div>
     </div>

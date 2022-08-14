@@ -11,11 +11,14 @@
     "48": "./icons/icon-48.png",
     "128": "./icons/icon-128.png"
   },
-  "permissions": ["activeTab"],
+  "permissions": ["tabs", "activeTab", "<all_urls>"],
 
   "browser_action": {
     "default_icon": "./icons/icon-32.png",
     "default_title": "Video Speed Controler",
     "default_popup": "./popup/popup.html"
+  },
+  "background": {
+    "scripts": ["./background/background.js"]
   }
 }

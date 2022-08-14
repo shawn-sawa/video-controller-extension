@@ -15,7 +15,7 @@ body {
 .container {
   width: fit-content;
   width: max-content;
-  background-color: aliceblue;
+  background-color: white;
   margin: 0 auto;
   padding: 0.5rem 1rem;
 }
@@ -23,7 +23,6 @@ body {
 .button-input button {
   padding: 0.1rem 0.2rem 0.3rem 0.2rem;
 }
-
 
 header p {
   font-size: large;
@@ -44,4 +43,14 @@ header p {
 
 .skip-to-end-btn {
   padding: 0.1rem 0.2rem 0.2rem 0.2rem;
+}
+
+.page {
+  border: 1px solid black;
+  padding: 0.1rem 0.2rem;
+  margin: 0.2rem;
+  border-radius: 0.25rem;
+}
+.page:hover {
+  background-color: lightgray;
 }

@@ -1,40 +1,32 @@
-// get video element
-const video = document.getElementById("video") as HTMLVideoElement;
+(() => {
+  const video = getVideo();
+  return video;
+})();
+browser.runtime.onMessage.addListener(({ msg }) => {
+  if (msg === "hasVideo") {
+    console.log("Checking for video.");
+    return !!getVideo();
+  }
 
-// create video controller if video is found
-if (video) {
-  const videoController = new VideoController_UI(video);
-  videoController.init();
-}
+  console.log("msg: ", msg);
+  const video = getVideo();
+  if (video) {
+    switch (msg) {
+      case "speedUp":
+        video.playbackRate += 0.1;
+        break;
+      case "speedDown":
+        video.playbackRate -= 0.1;
+        break;
+      case "skipToEnd":
+        video.currentTime = video.duration;
+        break;
+    }
+  }
 
-class VideoController {
-  video: HTMLVideoElement;
-  duration: number = 0;
-  currentTime: number = 0;
-  speed: number = 1;
-  constructor(video: HTMLVideoElement) {
-    this.video = video;
-  }
-  init() {
-    this.speed = this.video.playbackRate;
-    this.duration = this.video.duration;
-    this.currentTime = this.video.currentTime;
-    // a.currentTime
-    // a.fastSeek
-  }
-  speedUp() {
-    // TODO: send acks to popup.js
+  return Promise.resolve({ response: "Hi from content script" });
+});
 
-    this.speed += 0.1;
-    this.video.playbackRate = this.speed;
-  }
-  speedDown() {
-    // TODO: send acks to popup.js
-    this.speed -= 0.1;
-    this.video.playbackRate = this.speed;
-  }
-  skipToEnd() {
-    // TODO: send acks to popup.js
-    this.video.currentTime = this.duration;
-  }
+function getVideo() {
+  return document.querySelector("video") as HTMLVideoElement;
 }
