@@ -1,28 +1,45 @@
 "use strict";
-const videoLength = document.getElementById("videoLength");
-const currentSpeed = document.getElementById("currentSpeed");
-const speedUpBtn = document.getElementById("speedUpBtn");
-const speedDownBtn = document.getElementById("speedDownBtn");
-const skipToEndBtn = document.getElementById("skipToEndBtn");
-const pages = document.getElementById("pages");
-const controler = document.getElementById("controler");
+const popupPageElements = {
+    videoLength: document.getElementById("videoLength"),
+    currentSpeed: document.getElementById("currentSpeed"),
+    speedUpBtn: document.getElementById("speedUpBtn"),
+    speedDownBtn: document.getElementById("speedDownBtn"),
+    skipToEndBtn: document.getElementById("skipToEndBtn"),
+    pages: document.getElementById("pages"),
+    controler: document.getElementById("controler"),
+};
 let currentTabId;
+const allTabs = [];
 (() => {
     browser.tabs
         .query({})
         .then((tabs) => {
         tabs.forEach((tab) => injectContentScript(tab.id));
+        console.log('injected content script');
     })
         .catch((error) => {
         console.log(`Error: ${error}`);
     });
-    controler.style.display = "none";
+    popupPageElements.controler.style.display = "none";
 })();
+function refreshTabs() {
+    allTabs.forEach((tab, index) => {
+        allTabs.pop();
+    });
+    browser.tabs
+        .query({})
+        .then((tabs) => {
+        tabs.forEach((tab) => allTabs.push(tab));
+    })
+        .catch((error) => {
+        console.log(`Error: ${error}`);
+    });
+}
 function pageSelected(id) {
     injectContentScript(id);
     currentTabId = id;
-    pages.style.display = "none";
-    controler.style.display = "";
+    popupPageElements.pages.style.display = "none";
+    popupPageElements.controler.style.display = "";
 }
 function showPage(tab) {
     if (!tab.id)
@@ -32,7 +49,7 @@ function showPage(tab) {
     pageInfo.innerText = `${tab.id} - ${tab.title}`;
     pageInfo.id = tab.id ? tab.id.toString() : "";
     pageInfo.addEventListener("click", () => pageSelected(tab.id));
-    pages.append(pageInfo);
+    popupPageElements.pages.append(pageInfo);
 }
 function removePages() {
     const pages = document.querySelectorAll(".page");

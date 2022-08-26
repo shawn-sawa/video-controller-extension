@@ -1,8 +1,5 @@
 "use strict";
-(() => {
-    const video = getVideo();
-    return video;
-})();
+console.log("content script loaded");
 browser.runtime.onMessage.addListener(({ msg }) => {
     if (msg === "hasVideo") {
         console.log("Checking for video.");

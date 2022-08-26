@@ -1,7 +1,9 @@
-(() => {
-  const video = getVideo();
-  return video;
-})();
+console.log("content script loaded");
+// (() => {
+//   // const video = getVideo();
+//   // return video;
+//   return 'hello'
+// })();
 browser.runtime.onMessage.addListener(({ msg }) => {
   if (msg === "hasVideo") {
     console.log("Checking for video.");

@@ -44,6 +44,32 @@ cts responds when complete and what current status is
 ]
 ```
 
+### asdf
+
+```js
+// ! this doesn't work because this file is loaded after the browser action is clicked
+
+// browser.tabs.query({
+//     currentWindow: true,
+//     active: true,
+//   })
+//   .then(sendMessageToTabs)
+//   .catch(console.error);
+```
+
+### List of elements on popup.html
+
+```js
+const videoLength = document.getElementById("videoLength") as HTMLSpanElement;
+const currentSpeed = document.getElementById("currentSpeed") as HTMLSpanElement;
+const speedUpBtn = document.getElementById("speedUpBtn") as HTMLButtonElement;
+const speedDownBtn = document.getElementById("speedDownBtn") as HTMLButtonElement;
+const skipToEndBtn = document.getElementById("skipToEndBtn") as HTMLButtonElement;
+const pages = document.getElementById("pages") as HTMLDivElement;
+const controler = document.getElementById("controler") as HTMLDivElement;
+
+```
+
 ### first content script
 
 ```js
