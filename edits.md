@@ -32,6 +32,45 @@ cts responds when complete and what current status is
 
 ### Removed
 
+```js
+
+function sendMessageToTabs(id: number, msg: string) {
+  browser.tabs
+    .sendMessage(id, { msg })
+    .then((response) => {
+      console.log("Message from the content script:");
+      console.log(response.response);
+    })
+    .catch(console.error);
+}
+
+function injectContentScript(id: number) {
+  browser.tabs
+    .executeScript(id, {
+      file: "/content_script/content_script.js",
+    })
+    .then((result) => {
+      console.log("result: ", result);
+    })
+    .catch((error) => {
+      console.log("Error: ", error);
+    });
+}
+function refreshTabs() {
+  allTabs.forEach((tab, index) => {
+    allTabs.pop();
+  });
+  browser.tabs
+    .query({})
+    .then((tabs) => {
+      tabs.forEach((tab) => allTabs.push(tab));
+    })
+    .catch((error) => {
+      console.log(`Error: ${error}`);
+    });
+}
+```
+
 - Removed from manifest because it automatically loaded the content script into every page reguardless if the extention icon was clicked or not.
 
 ```json

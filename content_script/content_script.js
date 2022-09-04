@@ -1,9 +1,9 @@
 "use strict";
 console.log("content script loaded");
 browser.runtime.onMessage.addListener(({ msg }) => {
+    console.log("msg rx top :>> ", msg);
     if (msg === "hasVideo") {
-        console.log("Checking for video.");
-        return !!getVideo();
+        return Promise.resolve(!!getVideo());
     }
     console.log("msg: ", msg);
     const video = getVideo();
@@ -18,10 +18,13 @@ browser.runtime.onMessage.addListener(({ msg }) => {
             case "skipToEnd":
                 video.currentTime = video.duration;
                 break;
+            default:
+                console.log("Invalid request >>", msg);
         }
     }
     return Promise.resolve({ response: "Hi from content script" });
 });
 function getVideo() {
-    return document.querySelector("video");
+    const video = document.querySelector("video");
+    return video;
 }

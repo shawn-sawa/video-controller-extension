@@ -2,12 +2,12 @@ console.log("content script loaded");
 // (() => {
 //   // const video = getVideo();
 //   // return video;
-//   return 'hello'
+//   return ['hello']
 // })();
 browser.runtime.onMessage.addListener(({ msg }) => {
+  console.log("msg rx top :>> ", msg);
   if (msg === "hasVideo") {
-    console.log("Checking for video.");
-    return !!getVideo();
+    return Promise.resolve(!!getVideo());
   }
 
   console.log("msg: ", msg);
@@ -23,6 +23,8 @@ browser.runtime.onMessage.addListener(({ msg }) => {
       case "skipToEnd":
         video.currentTime = video.duration;
         break;
+      default:
+        console.log("Invalid request >>", msg);
     }
   }
 
@@ -30,5 +32,7 @@ browser.runtime.onMessage.addListener(({ msg }) => {
 });
 
 function getVideo() {
-  return document.querySelector("video") as HTMLVideoElement;
+  const video = document.querySelector("video") as HTMLVideoElement;
+  // console.log("video :>> ", video);
+  return video;
 }
